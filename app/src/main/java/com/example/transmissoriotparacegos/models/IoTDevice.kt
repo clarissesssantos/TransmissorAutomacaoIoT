@@ -4,10 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 data class IoTDevice(
     val nome: String,
-    val descricao: String,
-    val capacidades: List<Capacidade>
-) {
-}
+    val ip: String
+)
+
+data class ResultadoSensor(
+    val i: String,
+    @SerializedName("Valor")
+    val valor: Float,
+    @SerializedName("Unidade")
+    val unidade: String
+)
 
 data class Capacidade(
     val id: Int,

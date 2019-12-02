@@ -2,23 +2,24 @@ package com.example.transmissoriotparacegos.ui.scan
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.transmissoriotparacegos.MainActivity
 import com.example.transmissoriotparacegos.R
 import com.example.transmissoriotparacegos.models.IoTDevice
+import kotlinx.android.synthetic.main.list_item.view.*
 
 class ScanAdapter(var dataset: List<IoTDevice>, val activity: MainActivity) : RecyclerView.Adapter<ScanAdapter.ScanViewHolder>() {
-    inner class ScanViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
+    inner class ScanViewHolder(internal val layout: LinearLayout) : RecyclerView.ViewHolder(layout)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScanViewHolder {
-        val textView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false) as TextView
-        return ScanViewHolder(textView)
+        val layout = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false) as LinearLayout
+        return ScanViewHolder(layout)
     }
 
     override fun onBindViewHolder(holder: ScanViewHolder, position: Int) {
-        holder.textView.text = dataset[position].nome
-        holder.textView.setOnClickListener {
+        holder.layout.textView.text = dataset[position].nome
+        holder.layout.setOnClickListener {
             activity.navigateDetails(dataset[position])
         }
     }

@@ -31,8 +31,10 @@ class DetailsFragment(val device: IoTDevice) : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, DetailsViewModelFactory(device.ip)).get(DetailsViewModel::class.java)
         val textView = activity!!.findViewById<TextView>(R.id.textView)
+        val headerDeviceName = activity!!.findViewById<TextView>(R.id.headerDeviceName)
+        headerDeviceName.text = "Temperatura do ${device.nome}"
         viewModel.resultado.observe(this, Observer {
-            textView.text = "${device.nome}. Temperatura: ${it.valor}${it.unidade}"
+            textView.text = "${it.valor}${it.unidade}"
         })
     }
 
